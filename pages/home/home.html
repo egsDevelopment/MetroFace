@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>    
+    <link rel="stylesheet" href="/css/default.css" />
+    <!--<script src="/js/oAuthFacebook.js"></script>-->
+        <!-- WinJS references -->
+    <link rel="stylesheet" href="//Microsoft.WinJS.1.0/css/ui-light.css" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <!-- SDK sample framework references -->
+    <link rel="stylesheet" href="/css/default.css" />
+    <script src="/pages/home/home.js"></script>
+
+</head>
+<body>
+    <header>
+        <div id="facebook-nav">
+            <div id="logo"></div>
+            <ul id="buttons">
+                <li><a class="friends" onclick="popup('friendPop')"></a>
+                    <div id="Fblanket" style="display:none;" onclick="popup('friendPop')"></div>
+                    <div id="friendPop" style="display:none;"><div class="title">Friends:</div></div>
+                </li>
+                <li><a class="chat" onclick="popup('chatPop')"></a>
+                    <div id="Cblanket" style="display:none;" onclick="popup('chatPop')"></div>
+                    <div id="chatPop" style="display:none;"><div class="title">Chat:</div></div>
+                </li>
+                <li><a class="notifications" onclick="popup('notifPop')"></a>
+                    <div id="Nblanket" style="display:none;" onclick="popup('notifPop')"></div>
+                    <div id="notifPop" style="display:none;"><div class="title">Notifications:</div></div>
+                </li>
+                <li><a>Messages</a></li>
+                <li><a>Events</a></li>
+                <li><a>Photos</a></li>
+                <li><a>Find Friends</a></li>
+                <input id="search" placeholder="Search" />
+            </ul>
+            
+        </div>
+        <div id="status-bar">
+            <div class="name">
+                <a id="options" onclick="javascript:show()"><div></div></a>
+                <span id="fullname"></span>
+            </div>
+            <ul class="lists">
+                <li><a>View All</a></li>
+                <li><a>Close Friends</a></li>
+                <li><a>etc</a></li>
+            </ul>
+            <form method="post" onsubmit="pStatus(this)" id="postStatus">
+                <input name="status" id="status" placeholder="What's on your mind..." />
+            </form>
+        </div>
+        <div id="sidebar">
+            <ul class="info">
+                <li><img class="profilePic" src="../../images/profile-pic.jpg" alt="Profile Picture"/></li>
+                <hr />
+                <li><a>Favourites</a></li>
+                <li><a>Ads</a></li>
+                <li><a>Pages</a></li>
+                <li><a onclick="unhide('apps')">Apps</a><ul id="apps" style="display: none;"></ul></li>
+                <li><a onclick="unhide('groups')">Groups</a><ul id="groups" style="display: none;"></ul></li>
+                <li><a>More</a></li>
+            </ul>
+        </div>
+    </header>
+    <div id="content">
+        
+    </div>
+    <script type="text/javascript">
+        function show() {
+            if (document.getElementById("sidebar").getAttribute("class") != "show") {
+                document.getElementById("sidebar").setAttribute("class", "show");
+                document.getElementById("options").setAttribute("class", "close");
+            }
+            else {
+                document.getElementById("sidebar").setAttribute("class", "");
+                document.getElementById("options").setAttribute("class", "");
+            }
+        }
+        function popup(id) {
+            if (id == "notifPop")
+                b = "Nblanket";
+            else if (id == "chatPop")
+                b = "Cblanket";
+            else
+                b = "Fblanket";
+            if (document.getElementById(id).getAttribute("class") != "pop") {
+                document.getElementById(id).setAttribute("class", "pop");
+                document.getElementById(b).setAttribute("style", "");
+            }
+            else {
+                document.getElementById(id).setAttribute("class", "");
+                document.getElementById(b).setAttribute("style", "display:none;");
+            }
+        }
+        function unhide(id) {
+            if (document.getElementById(id).getAttribute("style") == "display: none;")
+                document.getElementById(id).setAttribute("style", "");
+            else
+                document.getElementById(id).setAttribute("style", "display: none;");
+        }
+        //function pStatus() {
+        //    console.log("balls");
+        //}
+    </script>
+</body>
+</html>
